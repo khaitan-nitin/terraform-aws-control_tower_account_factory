@@ -14,9 +14,13 @@ resource "aws_lambda_function" "codebuild_invoker" {
   runtime          = var.lambda_runtime_python_version
   timeout          = 900
 
-  vpc_config {
-    subnet_ids         = var.aft_vpc_private_subnets
-    security_group_ids = var.aft_vpc_default_sg
+  dynamic "vpc_config" {
+    for_each = toset(length(var.aft_vpc_private_subnets) > 0 ? [1] : [])
+
+    content {
+      subnet_ids         = var.aft_vpc_private_subnets
+      security_group_ids = var.aft_vpc_default_sg
+    }
   }
 }
 

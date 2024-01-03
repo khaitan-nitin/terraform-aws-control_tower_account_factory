@@ -75,10 +75,14 @@ resource "aws_codebuild_project" "codebuild" {
     buildspec = data.local_file.aft_lambda_layer.content
   }
 
-  vpc_config {
-    vpc_id             = var.aft_vpc_id
-    subnets            = var.aft_vpc_private_subnets
-    security_group_ids = var.aft_vpc_default_sg
+  dynamic "vpc_config" {
+    for_each = toset(length(var.aft_vpc_private_subnets) > 0 ? [1] : [])
+
+    content {
+      vpc_id             = var.aft_vpc_id
+      subnets            = var.aft_vpc_private_subnets
+      security_group_ids = var.aft_vpc_default_sg
+    }
   }
 
   lifecycle {

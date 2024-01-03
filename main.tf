@@ -43,6 +43,7 @@ module "aft_account_request_framework" {
   aft_account_provisioning_framework_sfn_name = local.aft_account_provisioning_framework_sfn_name
   aft_common_layer_arn                        = module.aft_lambda_layer.layer_version_arn
   cloudwatch_log_group_retention              = var.cloudwatch_log_group_retention
+  aft_feature_disable_private_networking      = var.aft_feature_disable_private_networking
   aft_vpc_cidr                                = var.aft_vpc_cidr
   aft_vpc_private_subnet_01_cidr              = var.aft_vpc_private_subnet_01_cidr
   aft_vpc_private_subnet_02_cidr              = var.aft_vpc_private_subnet_02_cidr

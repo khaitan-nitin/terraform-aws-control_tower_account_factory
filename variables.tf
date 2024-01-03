@@ -133,6 +133,17 @@ variable "aft_feature_cloudtrail_data_events" {
     error_message = "Valid values for var: aft_feature_cloudtrail_data_events are (true, false)."
   }
 }
+
+variable "aft_feature_disable_private_networking" {
+  type        = bool
+  description = "Flag turning NAT Gateway on/off for AFT VPC"
+  default     = false
+  validation {
+    condition     = contains([true, false], var.aft_feature_disable_private_networking)
+    error_message = "Valid values for var: aft_feature_disable_private_networking are (true, false)."
+  }
+}
+
 variable "aft_feature_enterprise_support" {
   description = "Feature flag toggling Enterprise Support enrollment on/off"
   type        = bool
