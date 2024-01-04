@@ -1,3 +1,11 @@
+data "aws_default_tags" "current" {}
+
+locals {
+  all_tags = merge(data.aws_default_tags.current.tags, {
+    managed_by = "AFT"
+  })
+}
+
 # Copyright Amazon.com, Inc. or its affiliates. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -6,9 +14,7 @@ provider "aws" {
   region = var.ct_home_region
   # The default profile or environment variables should authenticate to the Control Tower Management Account as Administrator
   default_tags {
-    tags = {
-      managed_by = "AFT"
-    }
+    tags = local.all_tags
   }
 }
 
@@ -20,9 +26,7 @@ provider "aws" {
     session_name = local.aft_session_name
   }
   default_tags {
-    tags = {
-      managed_by = "AFT"
-    }
+    tags = local.all_tags
   }
 }
 provider "aws" {
@@ -33,9 +37,7 @@ provider "aws" {
     session_name = local.aft_session_name
   }
   default_tags {
-    tags = {
-      managed_by = "AFT"
-    }
+    tags = local.all_tags
   }
 }
 provider "aws" {
@@ -46,9 +48,7 @@ provider "aws" {
     session_name = local.aft_session_name
   }
   default_tags {
-    tags = {
-      managed_by = "AFT"
-    }
+    tags = local.all_tags
   }
 }
 provider "aws" {
@@ -59,8 +59,6 @@ provider "aws" {
     session_name = local.aft_session_name
   }
   default_tags {
-    tags = {
-      managed_by = "AFT"
-    }
+    tags = local.all_tags
   }
 }
