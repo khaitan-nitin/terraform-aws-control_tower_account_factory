@@ -1,0 +1,27 @@
+name: Sync Fork
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * 1' # every Monday at 08:00
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+permissions:
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: tgymnich/fork-sync@v1.9
+        with:
+          pr_title: 'chore: sync fork with upstream'
+          owner: aws-ia
+          base: main
+          head: main
+          retries: 3
+          retry_after: 10
