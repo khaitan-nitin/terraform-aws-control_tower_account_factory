@@ -59,3 +59,7 @@ variable "concurrent_account_factory_actions" {
 variable "lambda_runtime_python_version" {
   type = string
 }
+
+variable "aft_feature_control_tower_dynamodb_backup_enabled" {
+  type = bool  
+}
