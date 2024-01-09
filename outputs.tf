@@ -53,6 +53,10 @@ output "aft_feature_delete_default_vpcs_enabled" {
   value = var.aft_feature_delete_default_vpcs_enabled
 }
 
+output "aft_feature_control_tower_dynamodb_backup_enabled" {
+  value = var.aft_feature_control_tower_dynamodb_backup_enabled
+}
+
 #########################################
 # AFT Customer VCS Variables
 #########################################

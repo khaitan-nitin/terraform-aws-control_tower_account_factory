@@ -164,6 +164,15 @@ variable "aft_feature_delete_default_vpcs_enabled" {
   }
 }
 
+variable "aft_feature_control_tower_dynamodb_backup_enabled" {
+  description = "Feature flag toggling deletion of control tower dynamodb backup"
+  type        = bool
+  default     = true
+  validation {
+    condition     = contains([true, false], var.aft_feature_control_tower_dynamodb_backup_enabled)
+    error_message = "Valid values for var: aft_feature_control_tower_dynamodb_backup_enabled are (true, false)."
+  }
+}
 #########################################
 # AFT Customer VCS Variables
 #########################################
